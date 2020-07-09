@@ -17,7 +17,6 @@ nameform.addEventListener('submit', function(event){
 form.addEventListener('submit', function(event){
   const msg = JSON.stringify({msg: input.value, name: username})
   socketio.emit('message', msg);
-  socketio.emit('message', input.value);
   input.value='';
   event.preventDefault();
 })

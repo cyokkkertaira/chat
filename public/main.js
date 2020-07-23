@@ -25,8 +25,22 @@ socketio.on('message',function(msg){
 
   const dt = document.createElement("dt");
   const dd = document.createElement("dd");
+  const dd2 = document.createElement("dd");
   dt.append(obj.name);
   chats.append(dt);
   dd.append(obj.msg);
   chats.append(dd);
+  dd2.append(formatDate(new Date(msg.date), 'yyyy/MM/dd HH:mm:ss'));
+  chats.append(dd2);
+  
+function formatDate (date, format) {
+  format = format.replace(/yyyy/g, date.getFullYear());
+  format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
+  format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+  format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
+  return format;
+};
 });
